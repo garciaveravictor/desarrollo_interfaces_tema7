@@ -21,9 +21,6 @@
 
 ;------------------------
 ;Ajustes de interfaz
-    ;Foto de cabecera por arreglar
-    !define MUI_HEADERIMAGE
-    !define MUI_HEADERIMAGE_BITMAP "${NSISDIR}\Contrib\Graphics\Header\apphotel.bmp"
     !define MUI_ABORTWARNING
 
     ;Mostrar todos los idiomas
