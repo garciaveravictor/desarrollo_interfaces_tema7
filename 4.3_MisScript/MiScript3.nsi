@@ -15,7 +15,7 @@
 
     ;Name and file
     Name "Modern UI Test"
-    OutFile "MiScript3.exe"
+    OutFile "Instalador3.exe"
 
     ;Default installation folder
     InstallDir "$LOCALAPPDATA\Modern UI Test"

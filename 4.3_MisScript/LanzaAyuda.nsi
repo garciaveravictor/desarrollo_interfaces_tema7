@@ -11,13 +11,17 @@
     Unicode True
 
     ;Ruta de instalador po defecto
-    InstallDir "$$LOCALAPPDATA\Lanza Ayuda"
+    InstallDir "$PROGRAMFILES\Lanza Ayuda"
 
     ;Get installation folder from registry if available
     InstallDirRegKey HKCU "Software\Lanza Ayuda" ""
 
     ;Request application privileges for Windows Vista
     RequestExecutionLevel user
+
+;------------------------
+;Variables
+    Var StartMenuFolder
 
 ;------------------------
 ;Ajustes de interfaz
@@ -38,6 +42,14 @@
     !insertmacro MUI_PAGE_WELCOME
     !insertmacro MUI_PAGE_COMPONENTS
     !insertmacro MUI_PAGE_DIRECTORY
+
+    ;menu inicio
+    !define MUI_STARTMENUPAGE_REGISTRY_ROOT "HKCU" 
+    !define MUI_STARTMENUPAGE_REGISTRY_KEY "Software\AppHotel" 
+    !define MUI_STARTMENUPAGE_REGISTRY_VALUENAME "AppHotel"
+
+    !insertmacro MUI_PAGE_STARTMENU Application $StartMenuFolder
+
     !insertmacro MUI_PAGE_INSTFILES
     !insertmacro MUI_PAGE_FINISH
 
@@ -127,10 +139,11 @@ Section "Principal" MainSec
 
     ;Establecemos carpeta de destino
     SetOutPath "$INSTDIR"
-    File "AppHotel.ico"
-    File "LanzaAyuda.zip"
+    ;File "AppHotel.ico"
+    File "LanzaAyuda.7z"
 
-    !insertmacro ZIPDLL_EXTRACT "$INSTDIR\UnistallLanzaAyuda.exe"
+    Nsis7z::Extract "LanzaAyuda.7z"
+    Delete "$OUTDIR\LanzaAyuda.7z"
 
     ;Crea el desinstalador
     WriteUninstaller "$INSTDIR\UnistallLanzaAyuda.exe"
